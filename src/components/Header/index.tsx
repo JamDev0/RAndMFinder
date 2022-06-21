@@ -4,7 +4,7 @@ export function Header() {
     return(
         <header
          className="
-            bg-brand-blue-850 w-full h-[120px] pb-[20px] flex justify-center items-center text-2xl
+            bg-brand-blue-850 w-full h-[120px] pb-[20px] flex justify-center items-center text-2xl font-semibold
          "
         >
 
