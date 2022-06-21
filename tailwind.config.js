@@ -72,6 +72,23 @@ module.exports = {
             '900': '#140006'
           }
 
+        },
+      },
+      fontFamily: {
+        'brand': {
+          'serif': {
+            'joan': 'Joan',
+          },
+
+          'sans-serif': {
+            'lato': 'Lato'
+          },
+
+          'cursive': {
+            'comfortaa': 'Comfortaa',
+            'monoton': 'Monoton',
+            'poiretOne': 'Poiret One'
+          }
         }
       }
     },
