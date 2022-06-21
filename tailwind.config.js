@@ -75,22 +75,17 @@ module.exports = {
         },
       },
       fontFamily: {
-        'brand': {
-          'serif': {
-            'joan': 'Joan',
-          },
+        'brand-serif-joan': 'Joan',
 
-          'sans-serif': {
-            'lato': 'Lato'
-          },
+        'brand-sans-serif-lato': 'Lato',
 
-          'cursive': {
-            'comfortaa': 'Comfortaa',
-            'monoton': 'Monoton',
-            'poiretOne': 'Poiret One'
-          }
+
+        'brand-cursive-comfortaa':'Comfortaa',
+
+        'brand-cursive-monoton':'Monoton',
+
+        'brand-cursive-poiretOne': 'Poiret One'
         }
-      }
     },
   },
   plugins: [],
