@@ -19,7 +19,9 @@ export function Header() {
 
     return(
         <header
-         
+         className="
+            mb-[40px]
+         "
         >
             <Menu>
                 <Menu.Button

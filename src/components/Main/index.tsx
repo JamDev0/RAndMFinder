@@ -3,7 +3,11 @@ import { Header } from "./components/Header";
 
 export function Main() {
     return (
-        <main className='p-8'>
+        <main 
+         className='
+            flex flex-col p-8
+         '
+        >
             <Header/>
 
             <CharacterCards />

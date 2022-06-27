@@ -15,7 +15,7 @@ export function CharacterCards() {
         return(
             <section
              className="
-                flex flex-wrap w-full
+                flex flex-wrap gap-y-[32px] w-full
              "
             >
                 <CharacterCard 
