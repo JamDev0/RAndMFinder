@@ -10,7 +10,6 @@ export function CharacterCards() {
         }
     })
 
-    // Erro ignoravel pois é apenas temporario essa funcionalidade
     if(!loading && !error) {
         return(
             <section
@@ -18,13 +17,20 @@ export function CharacterCards() {
                 flex flex-wrap gap-y-[32px] w-full
              "
             >
-                <CharacterCard 
-                 gender={data?.characters?.results[0].gender!}
-                 image={data?.characters?.results[0].image!}
-                 name={data?.characters?.results[0].name!}
-                 species={data?.characters?.results[0].species!}
-                 status={data?.characters?.results[0].status!}
-                />
+                {
+                    data?.characters?.results?.map( caracter => {
+                        return(
+                            <CharacterCard
+                             key={caracter?.name!} 
+                             gender={caracter?.gender!}
+                             image={caracter?.image!}
+                             name={caracter?.name!}
+                             species={caracter?.species!}
+                             status={caracter?.status!}
+                            />
+                        )
+                    })
+                }
             </section>
         )
     }
