@@ -1,7 +1,4 @@
-//@ts-ignore
-import translate from "translate";
-
-interface characterInterface {
+interface CharacterCardProps {
     name: string;
     species: string;
     status: string;
@@ -10,36 +7,9 @@ interface characterInterface {
 }
 
 
-export function CharacterCard({gender, image, name, species, status}: characterInterface) {
+export function CharacterCard({gender, image, name, species, status}: CharacterCardProps) {
 
-    translate.engine = "google";
-
-
-    async function getTranslatedCharacters(innerCharacters: characterInterface[]) {
-        if(innerCharacters.length <= 0) {
-            console.error('You need to pass an array of characters');
-        }
-
-        let translatedCharacters: characterInterface[] = [];
-
-        await innerCharacters.forEach( async (character) => {
-            let translatedCharacter: characterInterface = {
-                gender: '',
-                image: character.image,
-                name: character.name,
-                species: '',
-                status: ''
-            }
-
-            await translate(character.gender, 'pt').then( (data: string) => translatedCharacter.gender = data);
-            await translate(character.species, 'pt').then( (data: string) => translatedCharacter.species = data);
-            await translate(character.status, 'pt').then( (data: string) => translatedCharacter.status = data);
-
-            translatedCharacters.push(translatedCharacter);
-        })
-
-        return translatedCharacters;
-    }
+    
 
     function stylingForStatusIndicatorBasedOnCurrentStatus() {
         switch(status) {
