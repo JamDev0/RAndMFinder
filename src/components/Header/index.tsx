@@ -1,25 +1,17 @@
-import { MagnifyingGlass } from "phosphor-react";
+import { ReactSVG } from 'react-svg'
+
+import Logo from '../../assets/RKFinderLogo.svg'
+
+import styles from './Header.module.css'
 
 export function Header() {
     return(
         <header
          className="
-            bg-brand-blue-850 w-full h-[120px] pb-[20px] flex justify-center items-center text-2xl font-semibold
+            bg-brand-blue-850 px-2 w-full min-h-[120px] flex justify-center items-center text-3xl font-semibold
          "
         >
-
-            <h1
-             className="
-                flex items-center gap-x-4
-             "
-            >
-                Rick & Morty Finder
-                <MagnifyingGlass 
-                 weight="duotone"
-                 className="fill-brand-green-400"
-                 mirrored={true}
-                />
-            </h1>
+                <ReactSVG src={Logo} className={styles.svg}/>
         </header>
     )
 }

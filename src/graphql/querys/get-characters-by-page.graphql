@@ -1,0 +1,11 @@
+query getCharactersByPage($page: Int) {
+    characters(page: $page) {
+        results {
+            name
+            species
+            status
+            gender
+            image
+        }
+    }
+}

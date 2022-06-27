@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 * {
-    @apply m-0 p-0 text-brand-cyan-100 font-brand-sans-serif-lato
+    @apply m-0 p-0 font-brand-sans-serif-lato
 }
 
 body {
-    @apply bg-brand-purple-900
+    @apply bg-brand-purple-900 text-brand-cyan-100
 }

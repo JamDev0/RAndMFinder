@@ -1,0 +1,7 @@
+.svg, .svg svg {
+    @apply w-full h-auto max-h-[70px]
+}
+
+.svg path {
+    @apply fill-brand-cyan-200
+}
