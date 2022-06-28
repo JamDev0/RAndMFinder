@@ -1,4 +1,4 @@
-# [RKFinder](https://r-and-m-finder.vercel.app/)
+# [R&MFinder](https://r-and-m-finder.vercel.app/)
 
 ## Sobre
 
