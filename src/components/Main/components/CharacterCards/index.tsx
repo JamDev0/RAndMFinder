@@ -2,9 +2,9 @@
 import translate from "translate";
 translate.engine = "google";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { useGetCharactersByPageLazyQuery, useGetCharactersByPageQuery } from "../../../../graphql/generated";
+import { useGetCharactersByPageLazyQuery } from "../../../../graphql/generated";
 
 import { CharacterCard } from "./CharacterCard";
 import { useTranslateCharacters } from "../../../../hooks/useTranslateCharacters";
