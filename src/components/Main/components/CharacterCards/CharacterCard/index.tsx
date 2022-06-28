@@ -13,39 +13,39 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
 
     function stylingForStatusIndicatorBasedOnCurrentStatus() {
         switch(status) {
-            case 'Alive':
+            case 'Vivo':
                 return 'text-brand-green-600 border-brand-green-600'
 
-            case 'Dead':
+            case 'Morto':
                 return 'text-brand-pink-600 border-brand-pink-600'
 
-            case 'unknown':
+            case 'desconhecido':
                 return 'text-gray-500 border-gray-500'
         }
     }
 
     function stylingForImgBorderBasedOnCurrentStatus() {
         switch(status) {
-            case 'Alive':
+            case 'Vivo':
                 return 'border-brand-green-600'
 
-            case 'Dead':
+            case 'Morto':
                 return 'border-brand-pink-600'
 
-            case 'unknown':
+            case 'desconhecido':
                 return 'border-gray-500'
         }
     }
 
     function stylingForNameUnderlineBasedOnCurrentStatus() {
         switch(status) {
-            case 'Alive':
+            case 'Vivo':
                 return 'decoration-brand-green-600'
 
-            case 'Dead':
+            case 'Morto':
                 return 'decoration-brand-pink-600'
 
-            case 'unknown':
+            case 'desconhecido':
                 return 'decoration-gray-500'
         }
     }
