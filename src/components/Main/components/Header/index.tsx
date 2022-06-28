@@ -3,6 +3,7 @@ import { Menu } from "@headlessui/react";
 import { CaretDown } from "phosphor-react";
 
 import { FilterParameter } from "./FilterParameter";
+import { SearchBar } from "./SearchBar";
 
 
 const filterParameters = [{
@@ -23,6 +24,8 @@ export function Header() {
             mb-[40px]
          "
         >
+            <SearchBar/>
+
             <Menu>
                 <Menu.Button
                  className='
@@ -42,7 +45,7 @@ export function Header() {
                  '
                 >
                     {
-                        filterParameters.map(({ id, titles, type }) => {
+                        filterParameters.map(({ titles, type }) => {
                             return titles.map( title => {
                                 return(
                                     <FilterParameter 
