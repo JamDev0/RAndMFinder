@@ -6,10 +6,12 @@ import { client } from "./client";
 import { Header } from "./components/Header";
 
 import { Main } from "./components/Main";
+
+
 import { TranslateCharactersProvider } from "./hooks/useTranslateCharacters";
-import { IsLoadingProvider } from "./hooks/useIsLoading";
+import { IsLoadingProvider} from "./hooks/useIsLoading";
 import { CurrentCharactersPageProvider } from "./hooks/useCurrentCharactersPage";
-import { Footer } from "./components/Footer";
+
 
 export function App() {
 
@@ -21,8 +23,6 @@ export function App() {
             <Header/>
             
             <Main/>
-
-            <Footer/>
           </CurrentCharactersPageProvider>
         </IsLoadingProvider>
       </TranslateCharactersProvider>
