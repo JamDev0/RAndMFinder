@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "codegen": "graphql-codegen"  
+    "codegen": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.6.8",
@@ -15,6 +15,7 @@
     "@graphql-codegen/typescript-operations": "^2.4.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.16",
     "@headlessui/react": "^1.6.5",
+    "framer-motion": "^6.3.16",
     "graphql": "^16.5.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
