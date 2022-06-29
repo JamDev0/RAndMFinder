@@ -8,7 +8,8 @@ import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 import { TranslateCharactersProvider } from "./hooks/useTranslateCharacters";
 import { IsLoadingProvider } from "./hooks/useIsLoading";
-import { Loading } from "./components/Loading";
+import { CurrentCharactersPageProvider } from "./hooks/useCurrentCharactersPage";
+import { Footer } from "./components/Footer";
 
 export function App() {
 
@@ -16,9 +17,13 @@ export function App() {
     <ApolloProvider client={client}>
       <TranslateCharactersProvider>
         <IsLoadingProvider>
-          <Header/>
-          
-          <Main/>
+          <CurrentCharactersPageProvider>
+            <Header/>
+            
+            <Main/>
+
+            <Footer/>
+          </CurrentCharactersPageProvider>
         </IsLoadingProvider>
       </TranslateCharactersProvider>
     </ApolloProvider>
