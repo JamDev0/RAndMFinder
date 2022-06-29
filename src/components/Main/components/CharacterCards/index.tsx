@@ -10,6 +10,7 @@ import { CharacterCard } from "./CharacterCard";
 import { useTranslateCharacters } from "../../../../hooks/useTranslateCharacters";
 import { useIsLoading } from "../../../../hooks/useIsLoading";
 import { Loading } from "../../../Loading";
+import { useCurrentCharactersPage } from "../../../../hooks/useCurrentCharactersPage";
 
 
 interface characterInterface {
@@ -25,21 +26,10 @@ export function CharacterCards() {
 
     const {translatedCharacters, isTranslating, translateCharacters} = useTranslateCharacters();
 
-    const { isLoading, changeLoadingState } = useIsLoading()
-    
-    useEffect(()=>{
-        changeLoadingState(true)
-        getCharactersByPageLazyQuery({
-            variables: {
-                page: Math.floor(Math.random() * 43)
-            }
-        }).finally(() => {changeLoadingState(false)})
-    }, [])
+    const { isLoading, changeLoadingState } = useIsLoading();
 
+    const { currentCharactersPage, setCurrentCharactersPage } = useCurrentCharactersPage()
 
-    useEffect(()=>{
-        translateCharacters(data?.characters?.results as characterInterface[]);
-    }, [data])
 
 
     if(!isLoading && !isTranslating) {
@@ -50,15 +40,15 @@ export function CharacterCards() {
             "
             >
                 {
-                    translatedCharacters.map( caracter => {
+                    translatedCharacters.map( character => {
                         return(
                             <CharacterCard
-                            key={caracter?.image} 
-                            gender={caracter?.gender!}
-                            image={caracter?.image!}
-                            name={caracter?.name!}
-                            species={caracter?.species!}
-                            status={caracter?.status!}
+                            key={character?.image} 
+                            gender={character?.gender!}
+                            image={character?.image!}
+                            name={character?.name!}
+                            species={character?.species!}
+                            status={character?.status!}
                             />
                         )
                     })
