@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useGetCharactersByPageLazyQuery, useGetCharactersByStringLazyQuery } from "../../../../../graphql/generated";
+import { useCurrentCharactersPage } from "../../../../../hooks/useCurrentCharactersPage";
 import { useIsLoading } from "../../../../../hooks/useIsLoading";
 
 import { useTranslateCharacters } from "../../../../../hooks/useTranslateCharacters";
@@ -26,9 +27,11 @@ export function SearchBar() {
 
     const [getCharactersByPageLazyQuery, props] = useGetCharactersByPageLazyQuery()
 
-    const {isTranslating, translateCharacters} = useTranslateCharacters();
+    const { translateCharacters} = useTranslateCharacters();
 
-    const { isLoading, changeLoadingState } = useIsLoading();
+    const { changeLoadingState } = useIsLoading();
+
+    const { currentCharactersPage, setLastCharactersPage, setCurrentCharactersPage } = useCurrentCharactersPage()
 
     useEffect(()=>{
         if(searchValue !== '') {
@@ -38,12 +41,27 @@ export function SearchBar() {
                 page: 1
             }}).then( da => {setCharacters(da.data?.characters?.results as characterInterface[]); setRandomCharacters([] as characterInterface[])})
         } else {
+            let randomNumber = Math.floor(Math.random() * 43)
+
             changeLoadingState(true);
             getCharactersByPageLazyQuery({variables: {
-                page: Math.floor(Math.random() * 43)
-            }}).then( da => {setRandomCharacters(da.data?.characters?.results as characterInterface[]); setCharacters([] as characterInterface[])})
+                page: randomNumber
+            }}).then( da => {setRandomCharacters(da.data?.characters?.results as characterInterface[]); setCharacters([] as characterInterface[]); setCurrentCharactersPage(randomNumber)})
         }
     }, [searchValue])
+
+    useEffect(() => {
+        if(randomCharacters.length > 0) {
+            changeLoadingState(true);
+            getCharactersByPageLazyQuery({
+                variables: {
+                    page: currentCharactersPage
+                }
+            })
+            .then( da => setRandomCharacters(da.data?.characters?.results as characterInterface[]))
+            .finally(() => {changeLoadingState(false); setCurrentCharactersPage(currentCharactersPage)});
+        }
+    }, [currentCharactersPage])
 
     useEffect(()=> {
         if(characters.length > 0) {
@@ -56,7 +74,9 @@ export function SearchBar() {
                 if(characters.length > 0) {
                     let innerCharacters = Array.from(characters);
     
-                    let lowercasedSearchValue = searchValue.toLocaleLowerCase()
+                    let lowercasedSearchValue = searchValue.toLocaleLowerCase();
+
+                    setLastCharactersPage(Math.ceil(innerCharacters.length/20))
                     
                     innerCharacters = innerCharacters.sort( (characterA, characterB) => {
                         if(characterA.name.toLocaleLowerCase().indexOf(lowercasedSearchValue) > characterB.name.toLocaleLowerCase().indexOf(lowercasedSearchValue)) {
@@ -76,13 +96,13 @@ export function SearchBar() {
                         }
             
                         return 0
-                    }).slice(-1, 20);
+                    }).slice((20 * currentCharactersPage) - 20, 20 * currentCharactersPage);
     
                     setOrderedCharacters(innerCharacters);
                 }
             } 
         }
-    }, [characters])
+    }, [characters, currentCharactersPage])
 
     useEffect(()=>{
         if(randomCharacters.length > 0) {
