@@ -1,7 +1,7 @@
 import { CaretLeft, CaretRight } from "phosphor-react"
 import { useCurrentCharactersPage } from "../../hooks/useCurrentCharactersPage"
 
-export function Footer() {
+export function Navigation() {
     const { currentCharactersPage, setCurrentCharactersPage, lastCharactersPage } = useCurrentCharactersPage()
 
     return(
