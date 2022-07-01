@@ -11,6 +11,7 @@ import { Main } from "./components/Main";
 import { TranslateCharactersProvider } from "./hooks/useTranslateCharacters";
 import { IsLoadingProvider} from "./hooks/useIsLoading";
 import { CurrentCharactersPageProvider } from "./hooks/useCurrentCharactersPage";
+import { SearchFilterProvider } from "./hooks/useSearchFilter";
 
 
 export function App() {
@@ -20,9 +21,11 @@ export function App() {
       <TranslateCharactersProvider>
         <IsLoadingProvider>
           <CurrentCharactersPageProvider>
-            <Header/>
-            
-            <Main/>
+            <SearchFilterProvider>
+              <Header/>
+              
+              <Main/>
+            </SearchFilterProvider>
           </CurrentCharactersPageProvider>
         </IsLoadingProvider>
       </TranslateCharactersProvider>
