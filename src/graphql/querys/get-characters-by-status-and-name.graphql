@@ -1,0 +1,14 @@
+query getCharactersByStatusAndName($page: Int, $status: String, $name: String) {
+    characters(page: $page, filter: {status: $status, name: $name}) {
+        info {
+            next
+        }
+        results {
+            name
+            species
+            status
+            gender
+            image
+        }
+    }
+}
