@@ -1,22 +1,39 @@
 import { Menu } from "@headlessui/react";
 
+
 import { CaretDown } from "phosphor-react";
 
+
 import { FilterParameter } from "./FilterParameter";
+
 import { SearchBar } from "./SearchBar";
 
 
-const filterParameters = [{
+interface titleInterface {
+    title: 'alive' | 'dead' | 'unknown'
+}
+
+
+interface filterParametersInterface {
+    id: number;
+    type: 'status';
+    titles: titleInterface['title'][]
+}
+
+
+const filterParameters: filterParametersInterface[] = [{
     id: 1,
     type: 'status',
     titles: [
-        'vivo',
-        'morto',
-        'desconhecido',
+        'alive',
+        'dead',
+        'unknown',
     ],
 }];
 
+
 export function Header() {
+
 
     return(
         <header
@@ -31,13 +48,13 @@ export function Header() {
                  className='
                     text-2xl flex items-center gap-x-2 font-medium
                  '
+
                 >
                     Filtos
                     <CaretDown
                      weight="bold"
                     />
                 </Menu.Button>
-
 
                 <Menu.Items
                  className='
