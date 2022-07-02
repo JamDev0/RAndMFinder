@@ -20,7 +20,7 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
                 return 'text-brand-pink-600 border-brand-pink-600'
 
             case 'desconhecido':
-                return 'text-gray-500 border-gray-500'
+                return 'text-brand-gray-500 border-brand-gray-500'
         }
     }
 
@@ -33,7 +33,7 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
                 return 'border-brand-pink-600'
 
             case 'desconhecido':
-                return 'border-gray-500'
+                return 'border-brand-gray-500'
         }
     }
 
@@ -46,20 +46,23 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
                 return 'decoration-brand-pink-600'
 
             case 'desconhecido':
-                return 'decoration-gray-500'
+                return 'decoration-brand-gray-500'
         }
     }
 
     return(
         <section
          className="
-            flex flex-col bg-brand-cyan-800 px-6 py-8 relative rounded-xl gap-y-[24px]
+            flex flex-col  px-6 py-8 relative rounded-xl gap-y-[24px] w-full aspect-square
+            bg-brand-cyan-300
+            dark:bg-brand-cyan-750
          "
         >
             <span
              className={`
                 ${stylingForStatusIndicatorBasedOnCurrentStatus()}
-                absolute right-8 top-10 px-4 bg-brand-cyan-200 border border-solid rounded font-semibold text-lg
+                absolute right-8 top-10 px-4 border-2 border-solid rounded font-semibold text-lg z-10
+                bg-brand-gray-100
              `}
             >
 
@@ -69,7 +72,8 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
             <img
              className={`
                 ${stylingForImgBorderBasedOnCurrentStatus()}
-                rounded-lg border border-solid w-full
+                rounded-lg border-2 border-solid w-full h-auto 
+                dark:brightness-95
              `}
              src={image}
             />

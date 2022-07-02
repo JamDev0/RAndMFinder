@@ -26,20 +26,20 @@ export function FilterParameter({ title, type }: FilterParameterProps) {
                 return 'text-brand-pink-600 border-brand-pink-600'
 
             case 'unknown':
-                return 'text-gray-500 border-gray-500'
+                return 'text-brand-gray-500 border-brand-gray-500'
         }
     }
 
     function stylingForTypeStatusBg() {
         switch(title) {
             case 'alive':
-                return 'bg-brand-green-600 text-brand-cyan-100'
+                return 'bg-brand-green-600 text-brand-cyan-100 border-brand-green-600'
 
             case 'dead':
-                return 'bg-brand-pink-600 text-brand-cyan-100'
+                return 'bg-brand-pink-600 text-brand-cyan-100 border-brand-pink-600'
 
             case 'unknown':
-                return 'bg-gray-500 text-brand-cyan-100'
+                return 'bg-brand-gray-500 text-brand-cyan-100 border-brand-gray-500'
         }
     }
 
@@ -60,9 +60,9 @@ export function FilterParameter({ title, type }: FilterParameterProps) {
         <Menu.Item> 
             <div
              className={`
-                ${type === 'status' ?  stylingForTypeStatusTitle() : ''}
-                ${filter === title ? stylingForTypeStatusBg() : 'bg-brand-cyan-200' }
-                w-fit flex items-center gap-x-3 px-4 py-1 border border-solid rounded text-lg capitalize font-semibold
+                ${type === 'status' && filter !== title ?  stylingForTypeStatusTitle() : ''}
+                ${filter === title ? stylingForTypeStatusBg() : 'bg-brand-gray-900 dark:bg-brand-gray-100' }
+                w-fit flex items-center gap-x-3 px-4 py-1 border-2 border-solid rounded text-lg capitalize font-semibold
              `}
              onClick={() => filter === title ? setFilter('none') : setFilter(title)}
             >   

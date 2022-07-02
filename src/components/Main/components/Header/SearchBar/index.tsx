@@ -306,8 +306,12 @@ export function SearchBar() {
          type='text'
          name="Search"
          className="
-            bg-brand-cyan-200 w-full rounded-full px-4 py-1 text-2xl text-brand-blue-850 mb-[16px]
-            placeholder:text-gray-500
+            w-full rounded-full px-4 py-1 text-2xl mb-[16px]
+            bg-brand-blue-850 text-brand-cyan-100
+                placeholder:text-brand-gray-400
+            dark:bg-brand-gray-100  dark:text-brand-blue-850 
+                dark:placeholder:text-brand-gray-500
+            
          "
          placeholder="Procurar"
          value={searchValue}

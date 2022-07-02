@@ -3,5 +3,6 @@
 }
 
 .svg path {
-    @apply fill-brand-cyan-200
+    @apply fill-brand-blue-850
+    dark:fill-brand-gray-100
 }

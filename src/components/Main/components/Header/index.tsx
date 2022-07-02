@@ -33,8 +33,6 @@ const filterParameters: filterParametersInterface[] = [{
 
 
 export function Header() {
-
-
     return(
         <header
          className="
@@ -50,7 +48,7 @@ export function Header() {
                  '
 
                 >
-                    Filtos
+                    Filtros
                     <CaretDown
                      weight="bold"
                     />

@@ -16,7 +16,7 @@ export function Main() {
     return (
         <main 
          className='
-            flex flex-col p-8
+            flex flex-col p-8 w-full
          '
         >
             <Header/>
@@ -29,7 +29,7 @@ export function Main() {
                 :
                     <div
                      className="
-                        w-2/3 m-auto
+                        w-2/5 m-auto mt-[100px]
                      "
                     >
                         <Loading/>

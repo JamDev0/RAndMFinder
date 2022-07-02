@@ -16,7 +16,7 @@ export function CharacterCards() {
     return(
         <section
          className="
-            flex flex-wrap gap-y-[32px] w-full
+            flex flex-wrap gap-y-[85px] w-full
          "
         >
             {
