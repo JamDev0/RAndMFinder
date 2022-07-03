@@ -1,4 +1,4 @@
-import { Menu } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 
 
 import { CaretDown } from "phosphor-react";
@@ -44,19 +44,20 @@ export function Header() {
             <Menu>
                 <Menu.Button
                  className='
-                    text-2xl flex items-center gap-x-2 font-medium
+                    text-2xl flex items-center gap-x-2 font-medium focus:outline-0
                  '
 
                 >
                     Filtros
                     <CaretDown
                      weight="bold"
+                     className="outline-0"
                     />
                 </Menu.Button>
 
                 <Menu.Items
                  className='
-                    mt-[20px] flex flex-wrap justify-between gap-y-[15px]
+                    mt-[20px] flex flex-wrap justify-between gap-y-[15px] focus:outline-0
                  '
                 >
                     {
