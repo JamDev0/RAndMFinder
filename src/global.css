@@ -4,6 +4,7 @@
 
 * {
     @apply m-0 p-0 font-brand-sans-serif-lato
+    focus:outline-2 focus:outline-offset-2 focus:outline focus:outline-brand-green-500
 }
 
 body {
