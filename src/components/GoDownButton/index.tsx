@@ -37,7 +37,7 @@ export function GoDownButton() {
                         dark:bg-brand-purple-750
                      "
                      onClick={() => {
-                        window.scrollTo(0, document.getElementsByTagName('body')[0].scrollHeight)
+                        window.scrollTo({left: 0, top: document.getElementsByTagName('body')[0].scrollHeight, behavior: 'smooth'})
                      }}
                     >
                         <ArrowDown

@@ -37,7 +37,7 @@ export function BackUpButton() {
                         dark:bg-brand-purple-750
                      "
                      onClick={() => {
-                         window.scrollTo(0, 0)
+                         window.scrollTo({left: 0, top: 0, behavior: 'smooth'})
                      }}
                     >
                         <ArrowUp
