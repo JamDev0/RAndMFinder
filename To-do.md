@@ -16,7 +16,7 @@
 
 [x] - Dar um jeito de colocar um place holder enquanto a imagem nn tiver carregado
 
-[] - Adicionar easing no scroll
+[x] - Adicionar easing no scroll
 
 # Mobile
 
