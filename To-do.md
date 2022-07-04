@@ -1,23 +1,27 @@
 [] - Desktop;
 
-[] - Feedback de 0 personagens encontrados;
+[x] - Feedback de 0 personagens encontrados;
 
 [] - Clean code;
 
 [x] - Tema claro;
 
-[] - Animação do menu de filtros;
+[x] - Animação do menu de filtros;
 
-[] - Tentar dar um jeito nos fliks que da no app;
+[x] - Tentar dar um jeito nos fliks que da no app;
 
-[] - Criar um estilo pro focus (pode ser uma outline);
+[x] - Criar um estilo pro focus (pode ser uma outline);
 
-[] - Adicionar algum tipo de textura;
+[] - Adicionar algum tipo de textura?;
 
 [x] - Dar um jeito de colocar um place holder enquanto a imagem nn tiver carregado
 
+[] - Adicionar easing no scroll
+
 # Mobile
 
-[] - Botão de descer ao fim da página;
+[x] - Botão de descer ao fim da página;
+    [x] - Definir quando deve aparecer
 
-[] - Botão para voltar ao inicio;
+[x] - Botão para voltar ao inicio;
+    [x] - Definir quando deve aparecer
