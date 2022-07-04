@@ -13,6 +13,8 @@ import { useIsLoading } from "../../hooks/useIsLoading";
 
 import { useTranslateCharacters } from "../../hooks/useTranslateCharacters";
 import { useSearchFilter } from "../../hooks/useSearchFilter";
+import { BackUpButton } from "../BackUpButton";
+import { GoDownButton } from "../GoDownButton";
 
 
 export function Main() {
@@ -42,6 +44,7 @@ export function Main() {
          className='
             flex flex-col p-8 w-full relative
          '
+         onScroll={() => {console.log('Opa')}}
         >
             <Header/>
             {
@@ -50,6 +53,9 @@ export function Main() {
                         <>
                             <CharacterCards />
                             <Navigation/>
+
+                            <BackUpButton/>
+                            <GoDownButton/>
                         </>
                     :
                         filter === 'none' ?
