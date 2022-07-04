@@ -42,7 +42,7 @@ export function Main() {
     return (
         <main 
          className='
-            flex flex-col p-8 w-full relative
+            flex flex-col p-8 w-full relative backdrop-blur-sm
          '
          onScroll={() => {console.log('Opa')}}
         >
