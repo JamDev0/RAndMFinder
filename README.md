@@ -10,7 +10,7 @@ Atualmente já é possivel procurar o personagem desejado e ver sua imagem, nome
 
 ### Futuras implementações
 
-Além de uma versão polida do desktop, também sera adicionado um meio de percorrer páginas do conteudo(atualmente são acessiveis no máximo apenas 20 personagens), filtragem por meio do estado do personagem e feedbacks mais claros para o usuário
+Versão polida do desktop.
 
 ### Tecs 💻
 
