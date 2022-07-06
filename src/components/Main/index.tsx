@@ -4,7 +4,7 @@ import { Navigation } from "../Navigation";
 
 import { CharacterCards } from "./components/CharacterCards";
 
-import { Header } from "./components/Header";
+import { SearchBar } from "./components/SearchBar";
 
 import { NoCharactersFound } from "./components/NoCharactersFound";
 
@@ -46,7 +46,7 @@ export function Main() {
          '
          onScroll={() => {console.log('Opa')}}
         >
-            <Header/>
+            <SearchBar/>
             {
                 !isLoading ?
                     translatedCharacters.length > 0 ? 
