@@ -1,15 +1,17 @@
-import { TestTube } from "phosphor-react";
+import { Menu, Transition } from "@headlessui/react";
+import { CaretDown, Funnel } from "phosphor-react";
 import { useEffect, useState } from "react";
 
 
-import { useGetCharactersByPageLazyQuery, useGetCharactersByStatusAndNameLazyQuery, useGetCharactersByStatusLazyQuery, useGetCharactersByNameLazyQuery } from "../../../../../graphql/generated";
+import { useGetCharactersByPageLazyQuery, useGetCharactersByStatusAndNameLazyQuery, useGetCharactersByStatusLazyQuery, useGetCharactersByNameLazyQuery } from "../../../../graphql/generated";
 
-import { useCurrentCharactersPage } from "../../../../../hooks/useCurrentCharactersPage";
+import { useCurrentCharactersPage } from "../../../../hooks/useCurrentCharactersPage";
 
-import { useIsLoading } from "../../../../../hooks/useIsLoading";
-import { useSearchFilter } from "../../../../../hooks/useSearchFilter";
+import { useIsLoading } from "../../../../hooks/useIsLoading";
+import { useSearchFilter } from "../../../../hooks/useSearchFilter";
 
-import { useTranslateCharacters } from "../../../../../hooks/useTranslateCharacters";
+import { useTranslateCharacters } from "../../../../hooks/useTranslateCharacters";
+import { FilterParameter } from "./FilterParameter";
 
 
 interface characterInterface {
@@ -19,6 +21,27 @@ interface characterInterface {
     gender: string;
     image: string;
 }
+
+interface titleInterface {
+    title: 'alive' | 'dead' | 'unknown'
+}
+
+interface filterParametersInterface {
+    id: number;
+    type: 'status';
+    titles: titleInterface['title'][]
+}
+
+
+const filterParameters: filterParametersInterface[] = [{
+    id: 1,
+    type: 'status',
+    titles: [
+        'alive',
+        'dead',
+        'unknown',
+    ],
+}];
 
 
 export function SearchBar() {
@@ -302,22 +325,93 @@ export function SearchBar() {
 
 
     return (
-        <input
-         type='text'
-         name="Search"
-         className="
-            w-full rounded-full px-4 py-1 text-2xl mb-[16px]
-            bg-brand-blue-850 text-brand-cyan-100
-                placeholder:text-brand-gray-400
-            dark:bg-brand-gray-100  dark:text-brand-blue-850 
-                dark:placeholder:text-brand-gray-500
-            
-         "
-         placeholder="Procurar"
-         value={searchValue}
-         onChange={ event => setSearchValue(event.target.value)}
-        >
+            <Menu>
+                {({ open }) => {
+                    return(
+                        <div
+                         className="
+                            mb-[40px]
+                         "
+                        >
+                            <div
+                            className="
+                                flex justify-between rounded-full text-2xl mb-[16px] overflow-hidden
+                                bg-brand-blue-850 text-brand-cyan-100
+                                dark:bg-brand-gray-100  dark:text-brand-blue-850 
+                                focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline focus-within:outline-brand-green-500
+                            "
+                            >
+                                <input
+                                type='text'
+                                name="Search"
+                                className="
+                                    flex-1 pl-4 py-1
+                                    placeholder:text-brand-gray-400
+                                    dark:placeholder:text-brand-gray-500
+                                    focus:outline-0
+                                    
+                                "
+                                placeholder="Procurar"
+                                value={searchValue}
+                                onChange={ event => setSearchValue(event.target.value)}
+                                />
 
-        </input>
+                                <Menu.Button
+                                className='
+                                    w-fit px-3 flex gap-x-1 items-center
+                                    bg-brand-purple-200 text-brand-blue-850
+                                    dark:bg-brand-purple-750 dark:text-brand-gray-100
+                                    focus:outline-0
+                                '
+
+                                >
+                                    <Funnel
+                                    weight="bold"
+                                    className=""
+                                    />
+                                    <CaretDown
+                                    weight="bold"
+                                    className={`
+                                        transition duration-300 ease-in-out text-xl
+                                        ${open ? '-rotate-180' : 'rotate-0'}
+                                    `}
+                                    />
+                                </Menu.Button>
+
+                            </div>
+
+                            <Transition
+                             enter="transition-transform duration-300 ease-in-out"
+                             enterFrom="-translate-y-full opacity-0"
+                             enterTo="translate-y-0 opacity-100"
+                             leave="transition-all duration-300 ease-in-out"
+                             leaveFrom="translate-y-0 opacity-100"
+                             leaveTo="-translate-y-full opacity-0"
+                            >
+                                <Menu.Items
+                                 className='
+                                    mt-[20px] flex flex-wrap justify-between gap-y-[15px] focus:outline-0 relative z-0
+                                 '
+                                >
+                                    {
+                                        filterParameters.map(({ titles, type }) => {
+                                            return titles.map( title => {
+                                                return(
+                                                    <FilterParameter 
+                                                     title={title}
+                                                     type={type as 'status'}
+                                                     key={title}
+                                                    />
+                                                )
+                                            })
+                                        }) 
+                                    }   
+                                </Menu.Items>
+
+                            </Transition>
+                        </div>
+                    )
+                }}
+            </Menu>
     )
 }

@@ -58,7 +58,7 @@ export function FilterParameter({ title, type }: FilterParameterProps) {
 
     return(
         <Menu.Item> 
-            <div
+            <button
              className={`
                 ${type === 'status' && filter !== title ?  stylingForTypeStatusTitle() : ''}
                 ${filter === title ? stylingForTypeStatusBg() : 'bg-brand-gray-900 dark:bg-brand-gray-100' }
@@ -69,7 +69,7 @@ export function FilterParameter({ title, type }: FilterParameterProps) {
                 <span>
                     {translateStatus()}
                 </span>
-            </div>
+            </button>
         </Menu.Item>
     )
 }
