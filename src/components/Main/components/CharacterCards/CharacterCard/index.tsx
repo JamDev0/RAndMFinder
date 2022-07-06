@@ -53,7 +53,7 @@ export function CharacterCard({gender, image, name, species, status}: CharacterC
     return(
         <section
          className="
-            flex flex-col  px-6 py-8 relative rounded-xl gap-y-[24px] w-full aspect-square
+            flex flex-col  px-6 py-8 relative rounded-xl gap-y-[24px] max-w-[20rem] w-full aspect-square
             bg-brand-cyan-300
             dark:bg-brand-cyan-750
          "

@@ -10,13 +10,14 @@ import { useTranslateCharacters } from "../../../../hooks/useTranslateCharacters
 
 
 export function CharacterCards() {
-    const {translatedCharacters } = useTranslateCharacters();
+    const { translatedCharacters } = useTranslateCharacters();
 
 
     return(
         <section
          className="
-            flex flex-wrap gap-y-[85px] w-full
+            flex flex-wrap gap-y-[85px] gap-x-16 w-full justify-around
+            lg:gap-y-[50px]
          "
         >
             {

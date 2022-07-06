@@ -8,6 +8,7 @@ export function Navigation() {
         <footer
          className="
             mt-[40px] mb-[50px] flex justify-center items-center
+            lg:mt-[95px] lg:mb-[20px]
          "
         >
             <div
@@ -17,13 +18,14 @@ export function Navigation() {
             >
                 {
                     currentCharactersPage > 1 ?
-                        
-                        <CaretLeft
-                         weight="bold"
-                         onClick={() => {
-                            setCurrentCharactersPage(currentCharactersPage - 1)
-                         }}
-                        />
+                        <button>
+                            <CaretLeft
+                             weight="bold"
+                             onClick={() => {
+                                setCurrentCharactersPage(currentCharactersPage - 1)
+                             }}
+                            />
+                        </button>
                     :
                             null
                 }
@@ -37,12 +39,14 @@ export function Navigation() {
 
                 {
                     lastCharactersPage !== currentCharactersPage ?
-                        <CaretRight
-                         weight="bold"
-                         onClick={() => {
-                            setCurrentCharactersPage(currentCharactersPage + 1)
-                         }}
-                        />
+                        <button>
+                            <CaretRight
+                             weight="bold"
+                             onClick={() => {
+                                setCurrentCharactersPage(currentCharactersPage + 1)
+                             }}
+                            />
+                        </button>
                     :
                          null
                 }
