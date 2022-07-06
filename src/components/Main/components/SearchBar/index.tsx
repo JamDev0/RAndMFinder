@@ -330,15 +330,13 @@ export function SearchBar() {
                     return(
                         <div
                          className="
-                            mb-[40px]
+                            mb-[40px] group
                          "
                         >
                             <div
                             className="
                                 flex justify-between rounded-full text-2xl mb-[16px] overflow-hidden
-                                bg-brand-blue-850 text-brand-cyan-100
-                                dark:bg-brand-gray-100  dark:text-brand-blue-850 
-                                focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline focus-within:outline-brand-green-500
+                                group-focus-within:outline-2 group-focus-within:outline-offset-2 group-focus-within:outline group-focus-within:outline-brand-green-500
                             "
                             >
                                 <input
@@ -347,7 +345,9 @@ export function SearchBar() {
                                 className="
                                     flex-1 pl-4 py-1
                                     placeholder:text-brand-gray-400
-                                    dark:placeholder:text-brand-gray-500
+                                    bg-brand-blue-850 text-brand-cyan-100
+                                    dark:bg-brand-gray-100  dark:text-brand-blue-850 
+                                        dark:placeholder:text-brand-gray-500
                                     focus:outline-0
                                     
                                 "
