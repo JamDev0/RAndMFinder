@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
+
 interface currentCharactersPageContextInterface {
     currentCharactersPage: number;
     setCurrentCharactersPage: (arg: number) => void;
@@ -11,7 +12,9 @@ interface currentCharactersPageProviderProps {
     children: ReactNode;
 }
 
+
 const currentCharactersPageContext = createContext<currentCharactersPageContextInterface>({} as currentCharactersPageContextInterface);
+
 
 export function CurrentCharactersPageProvider({children}: currentCharactersPageProviderProps) {
     const [currentCharactersPage, setCurrentCharactersPage] = useState<number>(1);

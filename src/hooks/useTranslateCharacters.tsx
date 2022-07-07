@@ -2,7 +2,9 @@
 import translate from "translate";
 translate.engine = "google";
 
+
 import { createContext, ReactNode, useContext, useState } from "react";
+
 
 interface characterInterface {
     name: string;
@@ -22,12 +24,16 @@ interface translateCharactersContextInterface {
     translateCharacters: (arg: characterInterface[]) => Promise<void>;
 }
 
+
 const translateCharactersContext = createContext<translateCharactersContextInterface>({} as translateCharactersContextInterface);
+
 
 export function TranslateCharactersProvider({children}: TranslateCharactersProviderProps) {
     const [isTranslating, setIsTranslating] = useState<boolean>(true);
+
     const [translatedCharacters, setTranslatedCharacters] = useState<characterInterface[]>([] as characterInterface[]);
 
+    
     async function translateCharacters(innerCharacters: characterInterface[]) {    
         let innerTranslatedCharacters: characterInterface[] = [];
 

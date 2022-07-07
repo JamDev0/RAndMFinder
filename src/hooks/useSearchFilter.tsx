@@ -1,13 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 
-interface filterInterface {
-    filter: 'alive' | 'dead' | 'unknown' | 'none';
-}
+type filterType = 'alive' | 'dead' | 'unknown' | 'none';
 
 interface searchFilterContextInterface {
-    filter: filterInterface['filter'];
-    setFilter: (arg: filterInterface['filter']) => void
+    selectedFilter: filterType;
+    setSelectedFilter: (arg: filterType) => void
 }
 
 interface searchFilterProviderProps {
@@ -19,11 +17,11 @@ const searchFilterContext = createContext<searchFilterContextInterface>({} as se
 
 
 export function SearchFilterProvider({ children }: searchFilterProviderProps) {
-    const [filter, setFilter] = useState<filterInterface['filter']>('none');
+    const [selectedFilter, setSelectedFilter] = useState<filterType>('none');
 
 
     return(
-        <searchFilterContext.Provider value={{ filter, setFilter }}>
+        <searchFilterContext.Provider value={{ selectedFilter, setSelectedFilter }}>
             {children}
         </searchFilterContext.Provider>
     )

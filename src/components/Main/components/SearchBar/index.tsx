@@ -1,17 +1,26 @@
 import { Menu, Transition } from "@headlessui/react";
+
 import { CaretDown, Funnel } from "phosphor-react";
+
 import { useEffect, useState } from "react";
 
 
 import { useGetCharactersByPageLazyQuery, useGetCharactersByStatusAndNameLazyQuery, useGetCharactersByStatusLazyQuery, useGetCharactersByNameLazyQuery } from "../../../../graphql/generated";
 
+
 import { useCurrentCharactersPage } from "../../../../hooks/useCurrentCharactersPage";
 
 import { useIsLoading } from "../../../../hooks/useIsLoading";
+
 import { useSearchFilter } from "../../../../hooks/useSearchFilter";
 
 import { useTranslateCharacters } from "../../../../hooks/useTranslateCharacters";
+
+
 import { FilterParameter } from "./FilterParameter";
+
+
+type titleType = 'alive' | 'dead' | 'unknown'
 
 
 interface characterInterface {
@@ -22,14 +31,10 @@ interface characterInterface {
     image: string;
 }
 
-interface titleInterface {
-    title: 'alive' | 'dead' | 'unknown'
-}
-
 interface filterParametersInterface {
     id: number;
     type: 'status';
-    titles: titleInterface['title'][]
+    titles: titleType[]
 }
 
 
@@ -74,12 +79,9 @@ export function SearchBar() {
 
     const { translateCharacters} = useTranslateCharacters();
 
-
     const { changeLoadingState } = useIsLoading();
 
-
-    const { filter } = useSearchFilter();
-
+    const { selectedFilter } = useSearchFilter();
 
     const { currentCharactersPage, setLastCharactersPage, setCurrentCharactersPage } = useCurrentCharactersPage()
 
@@ -88,7 +90,7 @@ export function SearchBar() {
         getCharactersByStatusAndNameLazyQuery({
             variables: {
                 name: searchValue,
-                status: filter,
+                status: selectedFilter,
                 page: 1
             }
         })
@@ -102,15 +104,14 @@ export function SearchBar() {
         getCharactersByStatusLazyQuery({
             variables: {
                 page: 1,
-                status: filter
+                status: selectedFilter
             }
         })
         .then(({ data }) => {
             setAllRandomCharactersCaughtByStatus(data?.characters?.results as characterInterface[])
-             setCurrentCharactersPage(1);
+            setCurrentCharactersPage(1);
         });
     }
-
 
     function getCharactersByName() {
         getCharactersByNameLazyQuery({
@@ -167,9 +168,8 @@ export function SearchBar() {
     }
 
 
-
     useEffect(()=>{
-        if(filter !== 'none') {
+        if(selectedFilter !== 'none') {
             if(searchValue !== '') {
                 changeLoadingState(true);
 
@@ -190,11 +190,11 @@ export function SearchBar() {
                 getRandomCharacters();
             }
         }
-    }, [searchValue, filter])
+    }, [searchValue, selectedFilter])
 
 
     useEffect(() => {
-        if(searchValue === '' && filter === 'none') { 
+        if(searchValue === '' && selectedFilter === 'none') { 
             changeLoadingState(true);
             pageProps.refetch({
                 page: currentCharactersPage
@@ -206,14 +206,19 @@ export function SearchBar() {
         }
     }, [currentCharactersPage])
 
+    useEffect(()=> {
+        if(pageProps.data?.characters?.info?.pages) {
+            setLastCharactersPage(pageProps.data?.characters?.info?.pages)
+        }
+    }, [pageProps])
 
     useEffect(()=> {
-        if(searchValue === '' && filter !== 'none') {
+        if(searchValue === '' && selectedFilter !== 'none') {
                 if(statusProps.data?.characters?.info?.next) {
                     getCharactersByStatusLazyQuery({
                         variables: {
                             page: statusProps.data?.characters?.info?.next,
-                            status: filter
+                            status: selectedFilter
                         }
                     })
                     .then( data => {
@@ -232,16 +237,13 @@ export function SearchBar() {
         }
     }, [allRandomCharactersCaughtByStatus, currentCharactersPage])
 
-
-
-
     useEffect(()=> {
-        if(searchValue !== '' && filter !== 'none') {
+        if(searchValue !== '' && selectedFilter !== 'none') {
                 if(statusAndNameProps.data?.characters?.info?.next) {
                     getCharactersByStatusAndNameLazyQuery({variables: {
                         name: searchValue,
                         page: statusAndNameProps.data?.characters?.info?.next,
-                        status: filter
+                        status: selectedFilter
                     }}).then( data => {setAllCharactersCaughtByNameAndStatus( last => [...last, ...data.data?.characters?.results as characterInterface[]]); console.log('Meio')})
                 } else {
                     let innerCharacters = Array.from(allCharactersCaughtByNameAndStatus);
@@ -261,10 +263,8 @@ export function SearchBar() {
         }
     }, [allCharactersCaughtByNameAndStatus, currentCharactersPage])
 
-
-
     useEffect(()=> {
-        if(searchValue !== '' && filter === 'none') {
+        if(searchValue !== '' && selectedFilter === 'none') {
             if(nameProps.data?.characters?.info?.next) {
                 getCharactersByNameLazyQuery({variables: {
                     name: searchValue,
@@ -290,7 +290,7 @@ export function SearchBar() {
 
 
     useEffect(()=>{
-        if(searchValue !== '' && filter !== 'none') {
+        if(searchValue !== '' && selectedFilter !== 'none') {
             translateCharacters(pagedAndSortedCharactersCaughtByNameAndStatus).finally(() => {
                 changeLoadingState(false) //Talvez colocar um to no final do nome desse metódo
             })
@@ -298,7 +298,7 @@ export function SearchBar() {
     }, [pagedAndSortedCharactersCaughtByNameAndStatus])
 
     useEffect(()=>{
-        if(searchValue !== '' && filter === 'none') {
+        if(searchValue !== '' && selectedFilter === 'none') {
             translateCharacters(pagedAndSortedCharactersCaughtByName).finally(() => {
                 changeLoadingState(false) //Talvez colocar um to no final do nome desse metódo
             })
@@ -307,16 +307,15 @@ export function SearchBar() {
 
 
     useEffect(() => {
-        if(searchValue === '' && filter === 'none') {
+        if(searchValue === '' && selectedFilter === 'none') {
             translateCharacters(randomCharactersCaughtByPage).finally(() => {
                 changeLoadingState(false)
             })
         }
     }, [randomCharactersCaughtByPage])
 
-
     useEffect(() => {
-        if(searchValue === '' && filter !== 'none') {
+        if(searchValue === '' && selectedFilter !== 'none') {
             translateCharacters(pagedRandomCharactersCaughtByStatus).finally(() => {
                 changeLoadingState(false)
             })
@@ -397,11 +396,14 @@ export function SearchBar() {
                                         filterParameters.map(({ titles, type }) => {
                                             return titles.map( title => {
                                                 return(
-                                                    <FilterParameter 
-                                                     title={title}
-                                                     type={type as 'status'}
+                                                    <Menu.Item
                                                      key={title}
-                                                    />
+                                                    >
+                                                        <FilterParameter 
+                                                         title={title}
+                                                         type={type as 'status'}
+                                                        />
+                                                    </Menu.Item>
                                                 )
                                             })
                                         }) 

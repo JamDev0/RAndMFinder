@@ -1,9 +1,4 @@
-import { Menu } from "@headlessui/react";
-
-
 import { useSearchFilter } from "../../../../../hooks/useSearchFilter";
-import { useSpring } from "framer-motion";
-import { useState } from "react";
 
 
 interface FilterParameterProps {
@@ -14,7 +9,7 @@ interface FilterParameterProps {
 
 
 export function FilterParameter({ title, type }: FilterParameterProps) {
-    const { setFilter, filter } = useSearchFilter();
+    const { setSelectedFilter, selectedFilter } = useSearchFilter();
 
 
     function stylingForTypeStatusTitle() {
@@ -57,19 +52,17 @@ export function FilterParameter({ title, type }: FilterParameterProps) {
     }
 
     return(
-        <Menu.Item> 
-            <button
-             className={`
-                ${type === 'status' && filter !== title ?  stylingForTypeStatusTitle() : ''}
-                ${filter === title ? stylingForTypeStatusBg() : 'bg-brand-gray-900 dark:bg-brand-gray-100' }
-                w-fit flex items-center gap-x-3 px-4 py-1 border-2 border-solid rounded text-lg capitalize font-semibold
-             `}
-             onClick={() => filter === title ? setFilter('none') : setFilter(title)}
-            >   
-                <span>
-                    {translateStatus()}
-                </span>
-            </button>
-        </Menu.Item>
+        <button
+         className={`
+            w-fit flex items-center gap-x-3 px-4 py-1 border-2 border-solid rounded text-lg capitalize font-semibold
+            ${type === 'status' && selectedFilter !== title ?  stylingForTypeStatusTitle() : ''}
+            ${selectedFilter === title ? stylingForTypeStatusBg() : 'bg-brand-gray-900 dark:bg-brand-gray-100' }
+         `}
+         onClick={() => selectedFilter === title ? setSelectedFilter('none') : setSelectedFilter(title)}
+        >   
+            <span>
+                {translateStatus()}
+            </span>
+        </button>
     )
 }

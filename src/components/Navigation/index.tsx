@@ -1,8 +1,20 @@
 import { CaretLeft, CaretRight } from "phosphor-react"
+
+
 import { useCurrentCharactersPage } from "../../hooks/useCurrentCharactersPage"
+
 
 export function Navigation() {
     const { currentCharactersPage, setCurrentCharactersPage, lastCharactersPage } = useCurrentCharactersPage()
+
+
+    function isCurrentCharactersPageGreaterThanOne() {
+        return currentCharactersPage > 1
+    }
+
+    function isCurrentCharactersPageTheLast() {
+        return lastCharactersPage !== currentCharactersPage
+    }
 
     return(
         <footer
@@ -17,7 +29,7 @@ export function Navigation() {
              "
             >
                 {
-                    currentCharactersPage > 1 ?
+                    isCurrentCharactersPageGreaterThanOne() ?
                         <button>
                             <CaretLeft
                              weight="bold"
@@ -38,7 +50,7 @@ export function Navigation() {
                 </span>
 
                 {
-                    lastCharactersPage !== currentCharactersPage ?
+                    isCurrentCharactersPageTheLast() ?
                         <button>
                             <CaretRight
                              weight="bold"
@@ -50,7 +62,6 @@ export function Navigation() {
                     :
                          null
                 }
-                
             </div>
         </footer>
     )

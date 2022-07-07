@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 
 
 export function BackUpButton() {
-    const [shouldAppear, setShouldAppear] = useState<boolean>(false)
+    const [shouldAppear, setShouldAppear] = useState<boolean>(false);
 
-    const scrollEventHandler = (Event: typeof event) => {
-        window.scrollY > document.getElementsByTagName('body')[0].scrollHeight*0.5 ? 
+
+    function isWindowScrollHigherThan(Percentage: number) {
+       return window.scrollY > document.getElementsByTagName('body')[0].scrollHeight*Percentage
+    }
+
+    function scrollEventHandler(Event: typeof event) {
+
+        isWindowScrollHigherThan(0.5) ? 
             setShouldAppear(true)
         : 
             setShouldAppear(false)
