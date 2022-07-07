@@ -8,13 +8,16 @@ import { SearchBar } from "./components/SearchBar";
 
 import { NoCharactersFound } from "./components/NoCharactersFound";
 
+import { BackUpButton } from "../BackUpButton";
+
+import { GoDownButton } from "../GoDownButton";
+
 
 import { useIsLoading } from "../../hooks/useIsLoading";
 
 import { useTranslateCharacters } from "../../hooks/useTranslateCharacters";
+
 import { useSearchFilter } from "../../hooks/useSearchFilter";
-import { BackUpButton } from "../BackUpButton";
-import { GoDownButton } from "../GoDownButton";
 
 
 export function Main() {
@@ -22,11 +25,11 @@ export function Main() {
 
     const { translatedCharacters } = useTranslateCharacters();
     
-    const { filter } = useSearchFilter()
+    const { selectedFilter } = useSearchFilter()
 
 
     function translateFilter() {
-        switch(filter) {
+        switch(selectedFilter) {
             case 'alive':
                 return 'vivo'
 
@@ -39,26 +42,27 @@ export function Main() {
     }
 
 
+    function isTranslatedCharactersLengthGreaterThanZero() {
+        return translatedCharacters.length > 0
+    }
+
+
     return (
         <main 
          className='
             flex flex-col p-8 w-full relative backdrop-blur-sm
          '
-         onScroll={() => {console.log('Opa')}}
         >
             <SearchBar/>
             {
                 !isLoading ?
-                    translatedCharacters.length > 0 ? 
-                        <>
+                    isTranslatedCharactersLengthGreaterThanZero() ? 
+                        <div>
                             <CharacterCards />
                             <Navigation/>
-
-                            <BackUpButton/>
-                            <GoDownButton/>
-                        </>
+                        </div>
                     :
-                        filter === 'none' ?
+                        selectedFilter === 'none' ?
                             <NoCharactersFound message="Ops, parece que não foi possivel encontrar alguém com esse nome."/>
                         :
                             <NoCharactersFound
@@ -68,7 +72,7 @@ export function Main() {
                 :
                     <div
                      className="
-                        w-2/5 m-auto mt-[100px]
+                        w-2/5 m-auto mt-[100px] flex justify-center items-center
                      "
                     >
                         <Loading/>
