@@ -214,7 +214,7 @@ export type GetCharactersByPageQueryVariables = Exact<{
 }>;
 
 
-export type GetCharactersByPageQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', name?: string | null, species?: string | null, status?: string | null, gender?: string | null, image?: string | null } | null> | null } | null };
+export type GetCharactersByPageQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', pages?: number | null } | null, results?: Array<{ __typename?: 'Character', name?: string | null, species?: string | null, status?: string | null, gender?: string | null, image?: string | null } | null> | null } | null };
 
 export type GetCharactersByStatusAndNameQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
@@ -282,6 +282,9 @@ export type GetCharactersByNameQueryResult = Apollo.QueryResult<GetCharactersByN
 export const GetCharactersByPageDocument = gql`
     query getCharactersByPage($page: Int) {
   characters(page: $page) {
+    info {
+      pages
+    }
     results {
       name
       species
